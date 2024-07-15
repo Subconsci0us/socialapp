@@ -9,7 +9,6 @@ import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/firebase_options.dart';
 import 'package:socialapp/models/user_model.dart';
 import 'package:socialapp/router.dart';
-import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 void main() async {
@@ -37,6 +36,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         .getUserData(data.uid)
         .first;
     ref.read(userProvider.notifier).update((state) => userModel);
+    setState(() {});
   }
 
   @override
