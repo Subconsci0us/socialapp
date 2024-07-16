@@ -7,6 +7,7 @@ import 'package:socialapp/feature/whatshot/community/screens/community_screens.d
 import 'package:socialapp/feature/whatshot/community/screens/create_community_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/edit_community_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/mod_tools_screen.dart';
+import 'package:socialapp/feature/whatshot/post/screens/add_post_screen.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/edit_profile_screen.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 
@@ -18,6 +19,7 @@ final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: Navigation()),
   '/create-community': (_) =>
       const MaterialPage(child: CreateCommunityScreen()),
+  '/add-post': (_) => const MaterialPage(child: AddPostScreen()),
   '/r/:name': (route) => MaterialPage(
         child: CommunityScreen(
           name: route.pathParameters['name']!,

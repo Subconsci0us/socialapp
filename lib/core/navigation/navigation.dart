@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socialapp/feature/whatshot/home/screens/home_screen_hot.dart';
-import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class Navigation extends ConsumerStatefulWidget {

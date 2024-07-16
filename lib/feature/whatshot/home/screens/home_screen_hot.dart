@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
+
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
+import 'package:socialapp/feature/whatshot/feed/feed_screen.dart';
 import 'package:socialapp/feature/whatshot/home/delegates/search_community_delegate.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
+import 'package:socialapp/theme/pallete.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {
-  const WhatshotHomeScreen({super.key});
+  const WhatshotHomeScreen({
+    super.key,
+  });
 
   void displayDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
@@ -14,6 +20,10 @@ class WhatshotHomeScreen extends ConsumerWidget {
 
   void displayEndDrawer(BuildContext context) {
     Scaffold.of(context).openEndDrawer();
+  }
+
+  void navigateToAddPost(BuildContext context) {
+    Routemaster.of(context).push('/add-post');
   }
 
   @override
@@ -52,7 +62,14 @@ class WhatshotHomeScreen extends ConsumerWidget {
       ),
       drawer: const CommunityListDrawer(),
       endDrawer: const ProfileDrawer(),
-      body: Center(child: Text(user.name)),
+      body: const FeedScreen(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          navigateToAddPost(context);
+        },
+        backgroundColor: AppPallete.drawerColor,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
