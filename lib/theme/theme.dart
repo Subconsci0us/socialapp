@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:socialapp/theme/pallete.dart';
 
 final themeNotifierProvider =
     StateNotifierProvider<ThemeNotifier, ThemeData>((ref) {
@@ -18,57 +19,57 @@ class Palette {
 
   // Themes
   static final darkModeAppTheme = ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: blackColor,
-    cardColor: greyColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: drawerColor,
-      iconTheme: IconThemeData(
-        color: whiteColor,
+      scaffoldBackgroundColor: blackColor,
+      cardColor: greyColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: drawerColor,
+        iconTheme: IconThemeData(
+          color: whiteColor,
+        ),
       ),
-    ),
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: drawerColor,
-    ),
-    chipTheme: const ChipThemeData(
-      backgroundColor: blackColor,
-      side: BorderSide.none,
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.all(27),
-      border: _border(),
-      enabledBorder: _border(),
-      focusedBorder: _border(blueColor),
-      errorBorder: _border(redColor),
-    ),
-    primaryColor: redColor,
-  );
+      drawerTheme: const DrawerThemeData(
+        backgroundColor: drawerColor,
+      ),
+      chipTheme: const ChipThemeData(
+        backgroundColor: blackColor,
+        side: BorderSide.none,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(27),
+        border: _border(),
+        enabledBorder: _border(),
+        focusedBorder: _border(blueColor),
+        errorBorder: _border(redColor),
+      ),
+      primaryColor: redColor,
+      indicatorColor: AppPallete.blackColor);
 
   static final lightModeAppTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: whiteColor,
-    cardColor: greyColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: whiteColor,
-      elevation: 0,
-      iconTheme: IconThemeData(
-        color: blackColor,
+      scaffoldBackgroundColor: whiteColor,
+      cardColor: greyColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: whiteColor,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: blackColor,
+        ),
       ),
-    ),
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: whiteColor,
-    ),
-    chipTheme: const ChipThemeData(
-      backgroundColor: greyColor,
-      side: BorderSide.none,
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.all(27),
-      border: _border(),
-      enabledBorder: _border(),
-      focusedBorder: _border(blueColor),
-      errorBorder: _border(redColor),
-    ),
-    primaryColor: redColor,
-  );
+      drawerTheme: const DrawerThemeData(
+        backgroundColor: whiteColor,
+      ),
+      chipTheme: const ChipThemeData(
+        backgroundColor: greyColor,
+        side: BorderSide.none,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(27),
+        border: _border(),
+        enabledBorder: _border(),
+        focusedBorder: _border(blueColor),
+        errorBorder: _border(redColor),
+      ),
+      primaryColor: redColor,
+      indicatorColor: AppPallete.whiteColor);
 
   static OutlineInputBorder _border([Color color = greyColor]) {
     return OutlineInputBorder(

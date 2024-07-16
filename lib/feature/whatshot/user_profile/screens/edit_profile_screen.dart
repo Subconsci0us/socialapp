@@ -10,7 +10,6 @@ import 'package:socialapp/core/constants/constants.dart';
 import 'package:socialapp/core/utils.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/user_profile/controller/user_profile_controller.dart';
-import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class EditProfileScreen extends ConsumerStatefulWidget {

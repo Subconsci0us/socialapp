@@ -9,7 +9,6 @@ import 'package:socialapp/core/constants/constants.dart';
 import 'package:socialapp/core/utils.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
 import 'package:socialapp/models/community_model.dart';
-import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {

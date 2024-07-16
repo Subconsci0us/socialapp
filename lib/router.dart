@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:socialapp/core/navigation/navigation.dart';
 import 'package:socialapp/feature/auth/screens/login_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/add_mods_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/community_screens.dart';
 import 'package:socialapp/feature/whatshot/community/screens/create_community_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/edit_community_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/mod_tools_screen.dart';
-import 'package:socialapp/feature/whatshot/home/screens/home_screen_hot.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/edit_profile_screen.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 
@@ -15,7 +15,7 @@ final loggedOutRoute = RouteMap(routes: {
 });
 
 final loggedInRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: WhatshotHomeScreen()),
+  '/': (_) => const MaterialPage(child: Navigation()),
   '/create-community': (_) =>
       const MaterialPage(child: CreateCommunityScreen()),
   '/r/:name': (route) => MaterialPage(
