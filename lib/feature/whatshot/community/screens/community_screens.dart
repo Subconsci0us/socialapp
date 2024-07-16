@@ -5,6 +5,7 @@ import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
+import 'package:socialapp/models/community_model.dart';
 
 class CommunityScreen extends ConsumerWidget {
   final String name;
@@ -12,6 +13,12 @@ class CommunityScreen extends ConsumerWidget {
 
   void navigateToModTools(BuildContext context) {
     Routemaster.of(context).push('/mod-tools/$name');
+  }
+
+  void joinCommunity(WidgetRef ref, Community community, BuildContext context) {
+    ref
+        .read(communityControllerProvider.notifier)
+        .joinCommunity(community, context);
   }
 
   @override
@@ -77,7 +84,13 @@ class CommunityScreen extends ConsumerWidget {
                                         child: const Text('Mod Tools'),
                                       )
                                     : OutlinedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          joinCommunity(
+                                            ref,
+                                            community,
+                                            context,
+                                          );
+                                        },
                                         style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(
                                             borderRadius:

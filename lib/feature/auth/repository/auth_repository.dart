@@ -96,4 +96,8 @@ class AuthRepository {
       return left(Failure(e.toString()));
     }
   }
+
+  void logOut() async {
+    await _auth.signOut();
+  }
 }
