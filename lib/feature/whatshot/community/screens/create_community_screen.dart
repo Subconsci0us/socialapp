@@ -4,6 +4,9 @@ import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
 
 class CreateCommunityScreen extends ConsumerStatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const CreateCommunityScreen(),
+      );
   const CreateCommunityScreen({super.key});
 
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/feed/feed_screen.dart';
 import 'package:socialapp/feature/whatshot/home/delegates/search_community_delegate.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
+import 'package:socialapp/feature/whatshot/post/screens/add_post_screen.dart';
 import 'package:socialapp/theme/pallete.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {
@@ -22,13 +22,17 @@ class WhatshotHomeScreen extends ConsumerWidget {
     Scaffold.of(context).openEndDrawer();
   }
 
-  void navigateToAddPost(BuildContext context) {
-    Routemaster.of(context).push('/add-post');
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider)!;
+    final user = ref.watch(userProvider);
+
+    if (user == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +69,7 @@ class WhatshotHomeScreen extends ConsumerWidget {
       body: const FeedScreen(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToAddPost(context);
+          Navigator.of(context).push(AddPostScreen.route());
         },
         backgroundColor: AppPallete.drawerColor,
         child: const Icon(Icons.add),

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:socialapp/feature/whatshot/community/screens/add_mods_screen.dart';
+import 'package:socialapp/feature/whatshot/community/screens/edit_community_screen.dart';
 
 class ModToolsScreen extends StatelessWidget {
+  static Route<dynamic> route(String name) => MaterialPageRoute(
+        builder: (context) => ModToolsScreen(name: name),
+      );
   final String name;
   const ModToolsScreen({
     Key? key,
     required this.name,
   }) : super(key: key);
-
-  void navigateToModTools(BuildContext context) {
-    Routemaster.of(context).push('/edit-community/$name');
-  }
-
-  void navigateToAddMods(BuildContext context) {
-    Routemaster.of(context).push('/add-mods/$name');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +21,15 @@ class ModToolsScreen extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
-            leading: const Icon(Icons.add_moderator),
-            title: const Text('Add Moderators'),
-            onTap: () => navigateToAddMods(context),
-          ),
+              leading: const Icon(Icons.add_moderator),
+              title: const Text('Add Moderators'),
+              onTap: () =>
+                  Navigator.of(context).push(AddModsScreen.route(name))),
           ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Edit Community'),
-            onTap: () => navigateToModTools(context),
-          ),
+              leading: const Icon(Icons.edit),
+              title: const Text('Edit Community'),
+              onTap: () =>
+                  Navigator.of(context).push(EditCommunityScreen.route(name))),
         ],
       ),
     );

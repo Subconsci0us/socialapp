@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/post/widget/post_card.dart';
 import 'package:socialapp/feature/whatshot/user_profile/controller/user_profile_controller.dart';
+import 'package:socialapp/feature/whatshot/user_profile/screens/edit_profile_screen.dart';
 
 class UserProfileScreen extends ConsumerWidget {
+  static Route<dynamic> route(String uid) => MaterialPageRoute(
+        builder: (context) => UserProfileScreen(uid: uid),
+      );
+
   final String uid;
+
   const UserProfileScreen({
     super.key,
     required this.uid,
   });
-
-  void navigateToEditUser(BuildContext context) {
-    Routemaster.of(context).push('/edit-profile/$uid');
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,7 +51,9 @@ class UserProfileScreen extends ConsumerWidget {
                           alignment: Alignment.bottomLeft,
                           padding: const EdgeInsets.all(20),
                           child: OutlinedButton(
-                            onPressed: () => navigateToEditUser(context),
+                            onPressed: () => Navigator.of(context).push(
+                              EditProfileScreen.route(user.uid),
+                            ),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),

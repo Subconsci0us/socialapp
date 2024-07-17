@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socialapp/core/common/loader.dart';
+import 'package:socialapp/core/navigation/navigation.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_field.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_gradient_button.dart';
@@ -30,14 +31,20 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     super.dispose();
   }
 
-  void signUp(
-      BuildContext context, String name, String email, String password) {
+  void signUp(BuildContext context, String name, String email, String password,
+      WidgetRef ref) {
     ref.read(authControllerProvider.notifier).signUpWithEmailPassword(
           context: context,
-          name: nameController.text.trim(),
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
+          name: name,
+          email: email,
+          password: password,
         );
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      Navigation.route(),
+      (route) => false,
+    );
   }
 
   @override
@@ -86,11 +93,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               signUp(
-                                context,
-                                nameController.text.trim(),
-                                emailController.text.trim(),
-                                passwordController.text.trim(),
-                              );
+                                  context,
+                                  nameController.text.trim(),
+                                  emailController.text.trim(),
+                                  passwordController.text.trim(),
+                                  ref);
                             }
                           },
                         ),

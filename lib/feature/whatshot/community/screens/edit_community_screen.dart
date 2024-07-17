@@ -12,6 +12,9 @@ import 'package:socialapp/models/community_model.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {
+  static Route<dynamic> route(String name) => MaterialPageRoute(
+        builder: (context) => EditCommunityScreen(name: name),
+      );
   final String name;
   const EditCommunityScreen({
     super.key,

@@ -9,6 +9,9 @@ import 'package:socialapp/feature/whatshot/post/widget/post_card.dart';
 import 'package:socialapp/models/post_model.dart';
 
 class CommentsScreen extends ConsumerStatefulWidget {
+  static Route<dynamic> route(String postId) => MaterialPageRoute(
+        builder: (context) => CommentsScreen(postId: postId),
+      );
   final String postId;
   const CommentsScreen({
     super.key,

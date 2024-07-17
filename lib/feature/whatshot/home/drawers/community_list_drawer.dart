@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
-import 'package:socialapp/models/community_model.dart';
+import 'package:socialapp/feature/whatshot/community/screens/community_screens.dart';
+import 'package:socialapp/feature/whatshot/community/screens/create_community_screen.dart';
 
 class CommunityListDrawer extends ConsumerWidget {
   const CommunityListDrawer({super.key});
-
-  void navigateToCreateCommunity(BuildContext context) {
-    Routemaster.of(context).push('/create-community');
-  }
-
-  void navigateToCommunity(BuildContext context, Community community) {
-    Routemaster.of(context).push('/r/${community.name}');
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +19,7 @@ class CommunityListDrawer extends ConsumerWidget {
               title: const Text('Create a community'),
               leading: const Icon(Icons.add),
               onTap: () {
-                navigateToCreateCommunity(context);
+                Navigator.of(context).push(CreateCommunityScreen.route());
               },
             ),
             ref.watch(userCommunitiesProvider).when(
@@ -42,7 +34,8 @@ class CommunityListDrawer extends ConsumerWidget {
                           ),
                           title: Text('r/${community.name}'),
                           onTap: () {
-                            navigateToCommunity(context, community);
+                            Navigator.of(context)
+                                .push(CommunityScreen.route(community.name));
                           },
                         );
                       },

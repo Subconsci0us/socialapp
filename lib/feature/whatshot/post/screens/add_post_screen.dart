@@ -1,15 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:socialapp/feature/whatshot/post/screens/add_post_type_screen.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class AddPostScreen extends ConsumerWidget {
-  const AddPostScreen({super.key});
+  static route() => MaterialPageRoute(
+        builder: (context) => const AddPostScreen(),
+      );
 
-  void navigateToType(BuildContext context, String type) {
-    Routemaster.of(context).push('/add-post/$type');
-  }
+  const AddPostScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,7 +26,8 @@ class AddPostScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () => navigateToType(context, 'image'),
+            onTap: () =>
+                Navigator.of(context).push(AddPostTypeScreen.route('image')),
             child: SizedBox(
               height: cardHeightWidth,
               width: cardHeightWidth,
@@ -46,7 +47,8 @@ class AddPostScreen extends ConsumerWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => navigateToType(context, 'text'),
+            onTap: () =>
+                Navigator.of(context).push(AddPostTypeScreen.route('text')),
             child: SizedBox(
               height: cardHeightWidth,
               width: cardHeightWidth,
@@ -66,7 +68,8 @@ class AddPostScreen extends ConsumerWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => navigateToType(context, 'link'),
+            onTap: () =>
+                Navigator.of(context).push(AddPostTypeScreen.route('link')),
             child: SizedBox(
               height: cardHeightWidth,
               width: cardHeightWidth,

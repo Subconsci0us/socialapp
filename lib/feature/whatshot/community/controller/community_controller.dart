@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/constants/constants.dart';
 import 'package:socialapp/core/failure.dart';
 import 'package:socialapp/core/providers/storage_repository_provider.dart';
@@ -72,7 +71,7 @@ class CommunityController extends StateNotifier<bool> {
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
       showSnackBar(context, 'Community created successfully!');
-      Routemaster.of(context).pop();
+      Navigator.of(context).pop();
     });
   }
 
@@ -122,7 +121,7 @@ class CommunityController extends StateNotifier<bool> {
     state = false;
     res.fold(
       (l) => showSnackBar(context, l.message),
-      (r) => Routemaster.of(context).pop(),
+      (r) => Navigator.of(context).pop(),
     );
   }
 
@@ -154,7 +153,7 @@ class CommunityController extends StateNotifier<bool> {
     final res = await _communityRepository.addMods(communityName, uids);
     res.fold(
       (l) => showSnackBar(context, l.message),
-      (r) => Routemaster.of(context).pop(),
+      (r) => Navigator.of(context).pop(),
     );
   }
 

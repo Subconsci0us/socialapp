@@ -26,7 +26,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
-  void login(BuildContext context, String email, String password) {
+  void login(
+      BuildContext context, String email, String password, WidgetRef ref) {
     ref.read(authControllerProvider.notifier).loginWithEmailPassword(
           context: context,
           email: email,
@@ -73,11 +74,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           buttonText: 'Sign in',
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              login(
-                                context,
-                                emailController.text.trim(),
-                                passwordController.text.trim(),
-                              );
+                              login(context, emailController.text.trim(),
+                                  passwordController.text.trim(), ref);
                             }
                           },
                         ),

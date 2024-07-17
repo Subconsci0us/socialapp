@@ -13,6 +13,9 @@ import 'package:socialapp/feature/whatshot/user_profile/controller/user_profile_
 import 'package:socialapp/theme/theme.dart';
 
 class EditProfileScreen extends ConsumerStatefulWidget {
+  static Route<dynamic> route(String uid) => MaterialPageRoute(
+        builder: (context) => EditProfileScreen(uid: uid),
+      );
   final String uid;
   const EditProfileScreen({
     super.key,

@@ -14,6 +14,9 @@ import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class AddPostTypeScreen extends ConsumerStatefulWidget {
+  static Route<dynamic> route(String type) => MaterialPageRoute(
+        builder: (context) => AddPostTypeScreen(type: type),
+      );
   final String type;
   const AddPostTypeScreen({
     super.key,

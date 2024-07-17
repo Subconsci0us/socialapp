@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
+import 'package:socialapp/feature/whatshot/community/screens/mod_tools_screen.dart';
 import 'package:socialapp/feature/whatshot/post/widget/post_card.dart';
 import 'package:socialapp/models/community_model.dart';
 
 class CommunityScreen extends ConsumerWidget {
+  static Route<dynamic> route(String name) => MaterialPageRoute(
+        builder: (context) => CommunityScreen(name: name),
+      );
+
   final String name;
   const CommunityScreen({super.key, required this.name});
-
-  // http://localhost:4000/r/flutter
-
-  void navigateToModTools(BuildContext context) {
-    Routemaster.of(context).push('/mod-tools/$name');
-  }
 
   void joinCommunity(WidgetRef ref, Community community, BuildContext context) {
     ref
@@ -77,7 +75,9 @@ class CommunityScreen extends ConsumerWidget {
                                 community.mods.contains(user.uid)
                                     ? OutlinedButton(
                                         onPressed: () {
-                                          navigateToModTools(context);
+                                          Navigator.of(context).push(
+                                              ModToolsScreen.route(
+                                                  community.name));
                                         },
                                         style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(

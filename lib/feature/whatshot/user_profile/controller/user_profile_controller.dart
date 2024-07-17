@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/enums/enums.dart';
 import 'package:socialapp/core/providers/storage_repository_provider.dart';
 import 'package:socialapp/core/utils.dart';
@@ -78,7 +77,7 @@ class UserProfileController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) {
         _ref.read(userProvider.notifier).update((state) => user);
-        Routemaster.of(context).pop();
+        Navigator.of(context).pop();
       },
     );
   }

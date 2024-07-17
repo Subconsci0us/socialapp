@@ -6,6 +6,10 @@ import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
 
 class AddModsScreen extends ConsumerStatefulWidget {
+  static Route<dynamic> route(String name) => MaterialPageRoute(
+        builder: (context) => AddModsScreen(name: name),
+      );
+
   final String name;
   const AddModsScreen({
     super.key,

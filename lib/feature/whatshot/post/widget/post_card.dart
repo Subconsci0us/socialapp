@@ -3,13 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/core/constants/constants.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
+import 'package:socialapp/feature/whatshot/community/screens/community_screens.dart';
 import 'package:socialapp/feature/whatshot/post/controller/post_controller.dart';
+import 'package:socialapp/feature/whatshot/post/screens/comments_screen.dart';
+import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 import 'package:socialapp/models/post_model.dart';
 import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
@@ -31,18 +33,6 @@ class PostCard extends ConsumerWidget {
 
   void downvotePost(WidgetRef ref) async {
     ref.read(postControllerProvider.notifier).downvote(post);
-  }
-
-  void navigateToUser(BuildContext context) {
-    Routemaster.of(context).push('/u/${post.uid}');
-  }
-
-  void navigateToCommunity(BuildContext context) {
-    Routemaster.of(context).push('/r/${post.communityName}');
-  }
-
-  void navigateToComments(BuildContext context) {
-    Routemaster.of(context).push('/post/${post.id}/comments');
   }
 
   @override
@@ -111,7 +101,9 @@ class PostCard extends ConsumerWidget {
                               Row(
                                 children: [
                                   GestureDetector(
-                                    onTap: () => navigateToCommunity(context),
+                                    onTap: () => Navigator.of(context).push(
+                                        CommunityScreen.route(
+                                            post.communityName)),
                                     child: CircleAvatar(
                                       backgroundImage: NetworkImage(
                                         post.communityProfilePic,
@@ -133,7 +125,9 @@ class PostCard extends ConsumerWidget {
                                           ),
                                         ),
                                         GestureDetector(
-                                          onTap: () => navigateToUser(context),
+                                          onTap: () => Navigator.of(context)
+                                              .push(UserProfileScreen.route(
+                                                  post.uid)),
                                           child: Text(
                                             'u/${post.username}',
                                             style:
@@ -235,8 +229,8 @@ class PostCard extends ConsumerWidget {
                               Row(
                                 children: [
                                   IconButton(
-                                    onPressed: () =>
-                                        navigateToComments(context),
+                                    onPressed: () => Navigator.of(context)
+                                        .push(CommentsScreen.route(post.id)),
                                     icon: const Icon(
                                       Icons.comment,
                                     ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:routemaster/routemaster.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
+import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
@@ -11,10 +11,6 @@ class ProfileDrawer extends ConsumerWidget {
 
   void logOut(WidgetRef ref) {
     ref.read(authControllerProvider.notifier).logout();
-  }
-
-  void navigateToUserProfile(BuildContext context, String uid) {
-    Routemaster.of(context).push('/u/$uid');
   }
 
   void toggleTheme(WidgetRef ref) {
@@ -44,10 +40,11 @@ class ProfileDrawer extends ConsumerWidget {
             const SizedBox(height: 10),
             const Divider(),
             ListTile(
-              title: const Text('My Profile'),
-              leading: const Icon(Icons.person),
-              onTap: () => navigateToUserProfile(context, user.uid),
-            ),
+                title: const Text('My Profile'),
+                leading: const Icon(Icons.person),
+                onTap: () => Navigator.of(context).push(
+                      UserProfileScreen.route(user.uid),
+                    )),
             ListTile(
               title: const Text('Log Out'),
               leading: Icon(
