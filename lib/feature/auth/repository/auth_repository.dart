@@ -46,7 +46,7 @@ class AuthRepository {
 
       return right(userDoc);
     } on FirebaseAuthException catch (e) {
-      throw e.message!;
+      return left(Failure(e.message ?? "An unknown error occurred."));
     } catch (e) {
       return left(Failure(e.toString()));
     }
@@ -78,7 +78,7 @@ class AuthRepository {
 
       return right(userModel);
     } on FirebaseAuthException catch (e) {
-      throw e.message!;
+      return left(Failure(e.message ?? "An unknown error occurred."));
     } catch (e) {
       return left(Failure(e.toString()));
     }
@@ -91,7 +91,7 @@ class AuthRepository {
           .doc(userModel.uid)
           .set(userModel.toMap());
     } on FirebaseAuthException catch (e) {
-      throw e.message!;
+      return left(Failure(e.message ?? "An unknown error occurred."));
     } catch (e) {
       return left(Failure(e.toString()));
     }

@@ -22,6 +22,11 @@ class AuthField extends StatelessWidget {
         if (value!.isEmpty) {
           return "$hintText is missing!";
         }
+        if (hintText == 'Password') {
+          if (value.length < 6) {
+            return 'Password must be at least 6 characters!';
+          }
+        }
         return null;
       },
       obscureText: isObscureText,
