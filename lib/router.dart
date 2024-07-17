@@ -8,6 +8,8 @@ import 'package:socialapp/feature/whatshot/community/screens/create_community_sc
 import 'package:socialapp/feature/whatshot/community/screens/edit_community_screen.dart';
 import 'package:socialapp/feature/whatshot/community/screens/mod_tools_screen.dart';
 import 'package:socialapp/feature/whatshot/post/screens/add_post_screen.dart';
+import 'package:socialapp/feature/whatshot/post/screens/add_post_type_screen.dart';
+import 'package:socialapp/feature/whatshot/post/screens/comments_screen.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/edit_profile_screen.dart';
 import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 
@@ -48,6 +50,16 @@ final loggedInRoute = RouteMap(routes: {
   '/edit-profile/:uid': (routeData) => MaterialPage(
         child: EditProfileScreen(
           uid: routeData.pathParameters['uid']!,
+        ),
+      ),
+  '/add-post/:type': (routeData) => MaterialPage(
+        child: AddPostTypeScreen(
+          type: routeData.pathParameters['type']!,
+        ),
+      ),
+  '/post/:postId/comments': (route) => MaterialPage(
+        child: CommentsScreen(
+          postId: route.pathParameters['postId']!,
         ),
       ),
 });

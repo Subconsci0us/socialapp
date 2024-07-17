@@ -11,6 +11,7 @@ import 'package:socialapp/core/utils.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/repository/community_repository.dart';
 import 'package:socialapp/models/community_model.dart';
+import 'package:socialapp/models/post_model.dart';
 
 final userCommunitiesProvider = StreamProvider((ref) {
   final communityController = ref.watch(communityControllerProvider.notifier);
@@ -25,6 +26,10 @@ final getCommunityByNameProvider = StreamProvider.family((ref, String name) {
 
 final searchCommunityProvider = StreamProvider.family((ref, String query) {
   return ref.watch(communityControllerProvider.notifier).searchCommunity(query);
+});
+
+final getCommunityPostsProvider = StreamProvider.family((ref, String name) {
+  return ref.read(communityControllerProvider.notifier).getCommunityPosts(name);
 });
 
 final communityControllerProvider =
@@ -151,5 +156,9 @@ class CommunityController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) => Routemaster.of(context).pop(),
     );
+  }
+
+  Stream<List<Post>> getCommunityPosts(String name) {
+    return _communityRepository.getCommunityPosts(name);
   }
 }

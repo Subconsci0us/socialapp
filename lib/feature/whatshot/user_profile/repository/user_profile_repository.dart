@@ -5,6 +5,7 @@ import 'package:socialapp/core/constants/firebase_constant.dart';
 import 'package:socialapp/core/failure.dart';
 import 'package:socialapp/core/providers/firebase_providers.dart';
 import 'package:socialapp/core/type_defs.dart';
+import 'package:socialapp/models/post_model.dart';
 import 'package:socialapp/models/user_model.dart';
 
 final userProfileRepositoryProvider = Provider((ref) {
@@ -31,9 +32,12 @@ class UserProfileRepository {
     }
   }
 
-/*
   Stream<List<Post>> getUserPosts(String uid) {
-    return _posts.where('uid', isEqualTo: uid).orderBy('createdAt', descending: true).snapshots().map(
+    return _posts
+        .where('uid', isEqualTo: uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
           (event) => event.docs
               .map(
                 (e) => Post.fromMap(
@@ -43,7 +47,6 @@ class UserProfileRepository {
               .toList(),
         );
   }
-  */
 
   FutureVoid updateUserKarma(UserModel user) async {
     try {

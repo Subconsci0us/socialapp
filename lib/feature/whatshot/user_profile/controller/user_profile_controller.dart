@@ -2,10 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:socialapp/core/enums/enums.dart';
 import 'package:socialapp/core/providers/storage_repository_provider.dart';
 import 'package:socialapp/core/utils.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/user_profile/repository/user_profile_repository.dart';
+import 'package:socialapp/models/post_model.dart';
 import 'package:socialapp/models/user_model.dart';
 
 final userProfileControllerProvider =
@@ -19,11 +21,9 @@ final userProfileControllerProvider =
   );
 });
 
-/*
 final getUserPostsProvider = StreamProvider.family((ref, String uid) {
   return ref.read(userProfileControllerProvider.notifier).getUserPosts(uid);
 });
-*/
 
 class UserProfileController extends StateNotifier<bool> {
   final UserProfileRepository _userProfileRepository;
@@ -82,7 +82,6 @@ class UserProfileController extends StateNotifier<bool> {
       },
     );
   }
-  /*
 
   Stream<List<Post>> getUserPosts(String uid) {
     return _userProfileRepository.getUserPosts(uid);
@@ -93,7 +92,7 @@ class UserProfileController extends StateNotifier<bool> {
     user = user.copyWith(karma: user.karma + karma.karma);
 
     final res = await _userProfileRepository.updateUserKarma(user);
-    res.fold((l) => null, (r) => _ref.read(userProvider.notifier).update((state) => user));
+    res.fold((l) => null,
+        (r) => _ref.read(userProvider.notifier).update((state) => user));
   }
-  */
 }
