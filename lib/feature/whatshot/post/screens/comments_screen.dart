@@ -47,38 +47,43 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
       appBar: AppBar(),
       body: ref.watch(getPostByIdProvider(widget.postId)).when(
             data: (data) {
-              return Column(
-                children: [
-                  PostCard(post: data),
-                  TextField(
-                    onSubmitted: (val) => addComment(data),
-                    controller: commentController,
-                    decoration: const InputDecoration(
-                      hintText: 'What are your thoughts?',
-                      filled: true,
-                      border: InputBorder.none,
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    PostCard(post: data),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        onSubmitted: (val) => addComment(data),
+                        controller: commentController,
+                        decoration: const InputDecoration(
+                          hintText: 'What are your thoughts?',
+                          filled: true,
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ),
-                  ),
-                  ref.watch(getPostCommentsProvider(widget.postId)).when(
-                        data: (data) {
-                          return Expanded(
-                            child: ListView.builder(
-                              itemCount: data.length,
+                    ref.watch(getPostCommentsProvider(widget.postId)).when(
+                          data: (comments) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: comments.length,
                               itemBuilder: (BuildContext context, int index) {
-                                final comment = data[index];
+                                final comment = comments[index];
                                 return CommentCard(comment: comment);
                               },
-                            ),
-                          );
-                        },
-                        error: (error, stackTrace) {
-                          return ErrorText(
-                            error: error.toString(),
-                          );
-                        },
-                        loading: () => const Loader(),
-                      ),
-                ],
+                            );
+                          },
+                          error: (error, stackTrace) {
+                            return ErrorText(
+                              error: error.toString(),
+                            );
+                          },
+                          loading: () => const Loader(),
+                        ),
+                  ],
+                ),
               );
             },
             error: (error, stackTrace) => ErrorText(

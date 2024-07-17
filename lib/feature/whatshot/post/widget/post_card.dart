@@ -51,7 +51,7 @@ class PostCard extends ConsumerWidget {
           decoration: BoxDecoration(
             color: currentTheme.drawerTheme.backgroundColor,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -90,8 +90,8 @@ class PostCard extends ConsumerWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 4,
-                        horizontal: 16,
-                      ).copyWith(right: 0),
+                        horizontal: 5,
+                      ).copyWith(right: 5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -201,7 +201,7 @@ class PostCard extends ConsumerWidget {
                                           ? () {}
                                           : () => upvotePost(ref),
                                       icon: Icon(
-                                        Constants.up,
+                                        Icons.keyboard_arrow_up_sharp,
                                         size: 30,
                                         color: post.upvotes.contains(user.uid)
                                             ? AppPallete.redColor
@@ -210,14 +210,14 @@ class PostCard extends ConsumerWidget {
                                     ),
                                     Text(
                                       '${post.upvotes.length - post.downvotes.length == 0 ? 'Vote' : post.upvotes.length - post.downvotes.length}',
-                                      style: const TextStyle(fontSize: 17),
+                                      style: const TextStyle(fontSize: 15),
                                     ),
                                     IconButton(
                                       onPressed: isGuest
                                           ? () {}
                                           : () => downvotePost(ref),
                                       icon: Icon(
-                                        Constants.down,
+                                        Icons.keyboard_arrow_down_sharp,
                                         size: 30,
                                         color: post.downvotes.contains(user.uid)
                                             ? AppPallete.blueColor
@@ -237,7 +237,7 @@ class PostCard extends ConsumerWidget {
                                   ),
                                   Text(
                                     '${post.commentCount == 0 ? 'Comment' : post.commentCount}',
-                                    style: const TextStyle(fontSize: 17),
+                                    style: const TextStyle(fontSize: 15),
                                   ),
                                 ],
                               ),
@@ -273,7 +273,6 @@ class PostCard extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
       ],
     );
   }

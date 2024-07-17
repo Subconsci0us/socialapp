@@ -10,66 +10,65 @@ final themeNotifierProvider =
 
 class Palette {
   // Colors
-  static const blackColor = Color.fromRGBO(1, 1, 1, 1); // primary color
-  static const greyColor = Color.fromRGBO(26, 39, 45, 1); // secondary color
-  static const drawerColor = Color.fromRGBO(18, 18, 18, 1);
-  static const whiteColor = Colors.white;
-  static final redColor = Colors.red.shade500;
-  static final blueColor = Colors.blue.shade300;
+  static const Color blackColor = Color.fromRGBO(1, 1, 1, 1); // Primary color
+  static const Color greyColor =
+      Color.fromRGBO(26, 39, 45, 1); // Secondary color
+  static const Color drawerColor = Color.fromRGBO(18, 18, 18, 1);
+  static const Color whiteColor = Colors.white;
+  static final Color redColor = Colors.red.shade500;
+  static final Color blueColor = Colors.blue.shade300;
 
   // Themes
-  static final darkModeAppTheme = ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: blackColor,
-      cardColor: greyColor,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: drawerColor,
-        iconTheme: IconThemeData(
-          color: whiteColor,
-        ),
-      ),
-      drawerTheme: const DrawerThemeData(
-        backgroundColor: drawerColor,
-      ),
-      chipTheme: const ChipThemeData(
-        backgroundColor: blackColor,
-        side: BorderSide.none,
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.all(27),
-        border: _border(),
-        enabledBorder: _border(),
-        focusedBorder: _border(blueColor),
-        errorBorder: _border(redColor),
-      ),
-      primaryColor: redColor,
-      indicatorColor: AppPallete.blackColor);
+  static final ThemeData darkModeAppTheme = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: blackColor,
+    cardColor: greyColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: drawerColor,
+      iconTheme: IconThemeData(color: whiteColor),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: drawerColor,
+    ),
+    chipTheme: const ChipThemeData(
+      backgroundColor: blackColor,
+      side: BorderSide.none,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(27),
+      border: _border(),
+      enabledBorder: _border(),
+      focusedBorder: _border(blueColor),
+      errorBorder: _border(redColor),
+    ),
+    primaryColor: redColor,
+    indicatorColor: blackColor,
+  );
 
-  static final lightModeAppTheme = ThemeData.light().copyWith(
-      scaffoldBackgroundColor: whiteColor,
-      cardColor: greyColor,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: whiteColor,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: blackColor,
-        ),
-      ),
-      drawerTheme: const DrawerThemeData(
-        backgroundColor: whiteColor,
-      ),
-      chipTheme: const ChipThemeData(
-        backgroundColor: greyColor,
-        side: BorderSide.none,
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.all(27),
-        border: _border(),
-        enabledBorder: _border(),
-        focusedBorder: _border(blueColor),
-        errorBorder: _border(redColor),
-      ),
-      primaryColor: redColor,
-      indicatorColor: AppPallete.whiteColor);
+  static final ThemeData lightModeAppTheme = ThemeData.light().copyWith(
+    scaffoldBackgroundColor: whiteColor,
+    cardColor: whiteColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: whiteColor,
+      elevation: 0,
+      iconTheme: IconThemeData(color: blackColor),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: greyColor,
+    ),
+    chipTheme: const ChipThemeData(
+      backgroundColor: greyColor,
+      side: BorderSide.none,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(27),
+      border: _border(),
+      enabledBorder: _border(),
+      focusedBorder: _border(blueColor),
+      errorBorder: _border(redColor),
+    ),
+    primaryColor: redColor,
+    indicatorColor: whiteColor,
+  );
 
   static OutlineInputBorder _border([Color color = greyColor]) {
     return OutlineInputBorder(
