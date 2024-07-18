@@ -5,7 +5,6 @@ import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/auth/screens/signup_page.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_field.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_gradient_button.dart';
-import 'package:socialapp/theme/pallete.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});

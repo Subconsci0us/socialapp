@@ -50,7 +50,6 @@ class PostCard extends ConsumerWidget {
           decoration: BoxDecoration(
             color: currentTheme.drawerTheme.backgroundColor,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -112,9 +111,9 @@ class PostCard extends ConsumerWidget {
                               if (post.uid == user.uid)
                                 IconButton(
                                   onPressed: () => deletePost(ref, context),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.delete,
-                                    color: AppPallete.redColor,
+                                    color: AppPallete.whiteColor,
                                   ),
                                 ),
                             ],

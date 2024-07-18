@@ -5,7 +5,6 @@ import 'package:socialapp/core/navigation/navigation.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_field.dart';
 import 'package:socialapp/feature/auth/screens/widgets/auth_gradient_button.dart';
-import 'package:socialapp/theme/pallete.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   static route() => MaterialPageRoute(

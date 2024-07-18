@@ -5,6 +5,7 @@ import 'package:socialapp/core/common/loader.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
 import 'package:socialapp/feature/whatshot/post/controller/post_controller.dart';
 import 'package:socialapp/feature/whatshot/post/widget/post_card.dart';
+import 'package:socialapp/feature/whatshot/post/widget/write_something_widget.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class FeedScreen extends ConsumerWidget {
@@ -18,25 +19,18 @@ class FeedScreen extends ConsumerWidget {
           data: (communities) => ref.watch(userPostsProvider(communities)).when(
                 data: (data) {
                   return ListView.builder(
-                    itemCount: data.length,
+                    itemCount: data.length + 1, // Adjust the item count
                     itemBuilder: (BuildContext context, int index) {
-                      final post = data[index];
-                      return Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16.0),
-                        decoration: BoxDecoration(
-                          color: theme.cardColor,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: theme.scaffoldBackgroundColor,
-                              offset: const Offset(0, 2),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: PostCard(post: post),
-                      );
+                      if (index == 0) {
+                        return const WriteSomethingWidget(); // The widget to write something new
+                      } else {
+                        final post = data[index - 1];
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 10.0),
+                          child: PostCard(post: post),
+                        );
+                      }
                     },
                   );
                 },

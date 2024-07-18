@@ -10,8 +10,7 @@ final themeNotifierProvider =
 class Palette {
   // Colors
   static const Color blackColor = Color.fromRGBO(1, 1, 1, 1); // Primary color
-  static const Color greyColor =
-      Color.fromRGBO(26, 39, 45, 1); // Secondary color
+  static Color greyColor = Colors.grey.shade200; // Secondary color
   static const Color drawerColor = Color.fromRGBO(18, 18, 18, 1);
   static const Color whiteColor = Colors.white;
   static final Color redColor = Colors.red.shade500;
@@ -44,7 +43,7 @@ class Palette {
   );
 
   static final ThemeData lightModeAppTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: whiteColor,
+    scaffoldBackgroundColor: greyColor,
     cardColor: whiteColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: whiteColor,
@@ -69,7 +68,7 @@ class Palette {
     indicatorColor: whiteColor,
   );
 
-  static OutlineInputBorder _border([Color color = greyColor]) {
+  static OutlineInputBorder _border([Color color = Colors.grey]) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color),
       borderRadius: BorderRadius.circular(10),

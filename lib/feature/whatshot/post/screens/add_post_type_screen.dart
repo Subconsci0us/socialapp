@@ -33,7 +33,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
   final descriptionController = TextEditingController();
   final linkController = TextEditingController();
   File? bannerFile;
-  Uint8List? bannerWebFile;
+
   List<Community> communities = [];
   Community? selectedCommunity;
 
@@ -57,7 +57,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
 
   void sharePost() {
     if (widget.type == 'image' &&
-        (bannerFile != null || bannerWebFile != null) &&
+        (bannerFile != null) &&
         titleController.text.isNotEmpty) {
       ref.read(postControllerProvider.notifier).shareImagePost(
             context: context,
@@ -136,16 +136,14 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: bannerWebFile != null
-                              ? Image.memory(bannerWebFile!)
-                              : bannerFile != null
-                                  ? Image.file(bannerFile!)
-                                  : const Center(
-                                      child: Icon(
-                                        Icons.camera_alt_outlined,
-                                        size: 40,
-                                      ),
-                                    ),
+                          child: bannerFile != null
+                              ? Image.file(bannerFile!)
+                              : const Center(
+                                  child: Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 40,
+                                  ),
+                                ),
                         ),
                       ),
                     ),
