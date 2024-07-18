@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:socialapp/core/constants/firebase_constant.dart';
 import 'package:socialapp/core/failure.dart';
-import 'package:socialapp/core/network/connection_checker.dart';
 import 'package:socialapp/core/providers/firebase_providers.dart';
 import 'package:socialapp/core/type_defs.dart';
 import 'package:socialapp/models/comment_model.dart';

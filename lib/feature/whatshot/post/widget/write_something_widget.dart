@@ -19,7 +19,7 @@ class WriteSomethingWidget extends ConsumerWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 28.0,
-                  backgroundImage: NetworkImage(user!.profilePic),
+                  backgroundImage: NetworkImage(user.profilePic),
                 ),
                 const SizedBox(width: 7.0),
                 Expanded(
