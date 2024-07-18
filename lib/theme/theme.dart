@@ -53,10 +53,10 @@ class Palette {
       iconTheme: IconThemeData(color: blackColor),
     ),
     drawerTheme: const DrawerThemeData(
-      backgroundColor: greyColor,
+      backgroundColor: whiteColor,
     ),
     chipTheme: const ChipThemeData(
-      backgroundColor: greyColor,
+      backgroundColor: whiteColor,
       side: BorderSide.none,
     ),
     inputDecorationTheme: InputDecorationTheme(

@@ -8,6 +8,7 @@ import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.da
 import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
 import 'package:socialapp/feature/whatshot/post/screens/add_post_screen.dart';
 import 'package:socialapp/theme/pallete.dart';
+import 'package:socialapp/theme/theme.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {
   const WhatshotHomeScreen({
@@ -25,6 +26,7 @@ class WhatshotHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider);
+    final theme = ref.watch(themeNotifierProvider);
 
     if (user == null) {
       return const Scaffold(
@@ -71,7 +73,7 @@ class WhatshotHomeScreen extends ConsumerWidget {
         onPressed: () {
           Navigator.of(context).push(AddPostScreen.route());
         },
-        backgroundColor: AppPallete.drawerColor,
+        backgroundColor: theme.scaffoldBackgroundColor,
         child: const Icon(Icons.add),
       ),
     );

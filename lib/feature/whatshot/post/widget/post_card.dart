@@ -55,35 +55,6 @@ class PostCard extends ConsumerWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (kIsWeb)
-                Column(
-                  children: [
-                    IconButton(
-                      onPressed: isGuest ? () {} : () => upvotePost(ref),
-                      icon: Icon(
-                        Constants.up,
-                        size: 30,
-                        color: post.upvotes.contains(user.uid)
-                            ? AppPallete.redColor
-                            : null,
-                      ),
-                    ),
-                    Text(
-                      '${post.upvotes.length - post.downvotes.length == 0 ? 'Vote' : post.upvotes.length - post.downvotes.length}',
-                      style: const TextStyle(fontSize: 17),
-                    ),
-                    IconButton(
-                      onPressed: isGuest ? () {} : () => downvotePost(ref),
-                      icon: Icon(
-                        Constants.down,
-                        size: 30,
-                        color: post.downvotes.contains(user.uid)
-                            ? AppPallete.blueColor
-                            : null,
-                      ),
-                    ),
-                  ],
-                ),
               Expanded(
                 child: Column(
                   children: [

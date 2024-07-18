@@ -33,34 +33,22 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
   Uint8List? profileWebFile;
 
   void selectBannerImage() async {
-    final res = await pickImage();
+    final res = await pickImage(false, 16, 9);
 
     if (res != null) {
-      if (kIsWeb) {
-        setState(() {
-          bannerWebFile = res.files.first.bytes;
-        });
-      } else {
-        setState(() {
-          bannerFile = File(res.files.first.path!);
-        });
-      }
+      setState(() {
+        bannerFile = res;
+      });
     }
   }
 
   void selectProfileImage() async {
-    final res = await pickImage();
+    final res = await pickImage(true, 1, 1);
 
     if (res != null) {
-      if (kIsWeb) {
-        setState(() {
-          profileWebFile = res.files.first.bytes;
-        });
-      } else {
-        setState(() {
-          profileFile = File(res.files.first.path!);
-        });
-      }
+      setState(() {
+        profileFile = res;
+      });
     }
   }
 

@@ -46,16 +46,11 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
   }
 
   void selectBannerImage() async {
-    final res = await pickImage();
+    final res = await pickImage(false, 16, 9);
 
     if (res != null) {
-      if (kIsWeb) {
-        setState(() {
-          bannerWebFile = res.files.first.bytes;
-        });
-      }
       setState(() {
-        bannerFile = File(res.files.first.path!);
+        bannerFile = res;
       });
     }
   }
