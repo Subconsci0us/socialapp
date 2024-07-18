@@ -15,6 +15,7 @@ class Post {
   final String type;
   final DateTime createdAt;
   final List<String> awards;
+
   Post({
     required this.id,
     required this.title,

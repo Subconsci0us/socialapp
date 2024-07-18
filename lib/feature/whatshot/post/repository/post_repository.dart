@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:socialapp/core/constants/firebase_constant.dart';
 import 'package:socialapp/core/failure.dart';
+import 'package:socialapp/core/network/connection_checker.dart';
 import 'package:socialapp/core/providers/firebase_providers.dart';
 import 'package:socialapp/core/type_defs.dart';
 import 'package:socialapp/models/comment_model.dart';
@@ -17,8 +18,10 @@ final postRepositoryProvider = Provider((ref) {
 
 class PostRepository {
   final FirebaseFirestore _firestore;
-  PostRepository({required FirebaseFirestore firestore})
-      : _firestore = firestore;
+
+  PostRepository({
+    required FirebaseFirestore firestore,
+  }) : _firestore = firestore;
 
   CollectionReference get _posts =>
       _firestore.collection(FirebaseConstants.postsCollection);
@@ -35,21 +38,59 @@ class PostRepository {
     }
   }
 
+  /*
+
   Stream<List<Post>> fetchUserPosts(List<Community> communities) {
     return _posts
         .where('communityName',
             whereIn: communities.map((e) => e.name).toList())
         .orderBy('createdAt', descending: true)
         .snapshots()
-        .map(
-          (event) => event.docs
-              .map(
-                (e) => Post.fromMap(
-                  e.data() as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        );
+        .asyncMap((event) async {
+      // Convert Firestore documents to Post objects
+      final List<Post> posts = event.docs
+          .map((e) => Post.fromMap(e.data() as Map<String, dynamic>))
+          .toList();
+
+      // Check internet connectivity
+      if (await connectionChecker.isConnected) {
+        // If connected, upload posts to local storage (Hive)
+        localDataSource.uploadLocalPosts(posts: posts);
+        print(' storage updated with ${posts.length} posts.');
+
+        return posts;
+      }
+
+      // Load posts from local storage (Hive)
+      List<Post> localPosts = localDataSource.loadPosts();
+      print('Local posts loaded from Hive: ${localPosts.length} posts.');
+
+      // Return local posts if available, otherwise return fetched posts
+      return localPosts;
+    });
+  }
+*/
+  Stream<List<Post>> fetchUserPosts(List<Community> communities) {
+    // Stream to listen for posts
+    return _posts
+        .where('communityName',
+            whereIn: communities.map((e) => e.name).toList())
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .asyncMap((snapshot) async {
+      // Convert snapshot to list of posts
+      final posts = snapshot.docs
+          .map(
+            (doc) => Post.fromMap(doc.data() as Map<String, dynamic>),
+          )
+          .toList();
+
+      //  localDataSource.uploadLocalPosts(posts: posts);
+      // print('Storage updated with ${posts.length} posts.');
+
+      //
+      return posts;
+    });
   }
 
   FutureVoid deletePost(Post post) async {

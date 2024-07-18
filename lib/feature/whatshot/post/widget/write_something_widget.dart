@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/post/screens/add_post_type_screen.dart';
 
 class WriteSomethingWidget extends ConsumerWidget {
@@ -7,6 +8,7 @@ class WriteSomethingWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: Column(
@@ -15,6 +17,11 @@ class WriteSomethingWidget extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
               children: <Widget>[
+                CircleAvatar(
+                  radius: 28.0,
+                  backgroundImage: NetworkImage(user!.profilePic),
+                ),
+                const SizedBox(width: 7.0),
                 Expanded(
                   child: GestureDetector(
                     onTap: () => Navigator.of(context)
@@ -36,7 +43,7 @@ class WriteSomethingWidget extends ConsumerWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

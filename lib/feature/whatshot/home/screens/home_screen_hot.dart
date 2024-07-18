@@ -6,6 +6,7 @@ import 'package:socialapp/feature/whatshot/feed/feed_screen.dart';
 import 'package:socialapp/feature/whatshot/home/delegates/search_community_delegate.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
+import 'package:socialapp/theme/theme.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {
   const WhatshotHomeScreen({
@@ -22,16 +23,6 @@ class WhatshotHomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
-
-    if (user == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -52,8 +43,8 @@ class WhatshotHomeScreen extends ConsumerWidget {
           ),
           Builder(builder: (context) {
             return IconButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage(user.profilePic),
+              icon: const CircleAvatar(
+                backgroundImage: AssetImage('assets/images/default_avatar.jpg'),
               ),
               onPressed: () {
                 displayEndDrawer(context);

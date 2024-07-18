@@ -39,13 +39,14 @@ class SearchCommunityDelegate extends SearchDelegate {
             itemBuilder: (BuildContext context, int index) {
               final community = communites[index];
               return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(community.avatar),
-                  ),
-                  title: Text('r/${community.name}'),
-                  onTap: () => Navigator.of(context).push(
-                        CommunityScreen.route(community.name),
-                      ));
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(community.avatar),
+                ),
+                title: Text('r/${community.name}'),
+                onTap: () => Navigator.of(context).push(
+                  CommunityScreen.route(community.name),
+                ),
+              );
             },
           ),
           error: (error, stackTrace) => ErrorText(
