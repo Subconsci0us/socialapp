@@ -24,35 +24,37 @@ class FeedScreen extends ConsumerWidget {
     }
 
     return ref.watch(userCommunitiesProvider).when(
-          data: (communities) => ref.watch(userPostsProvider(communities)).when(
-                data: (posts) {
-                  return ListView.builder(
-                    itemCount: posts.length + 1, // Adjust the item count
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index == 0) {
-                        return const WriteSomethingWidget(); // The widget to write something new
-                      } else {
-                        final post = posts[index - 1];
-                        return Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 5.0, horizontal: 10.0),
-                          child: PostCard(post: post),
-                        );
-                      }
-                    },
-                  );
+        data: (communities) => ref.watch(userPostsProvider(communities)).when(
+            data: (posts) {
+              return ListView.builder(
+                itemCount: posts.length + 1, // Adjust the item count
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == 0) {
+                    return const WriteSomethingWidget(); // The widget to write something new
+                  } else {
+                    final post = posts[index - 1];
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
+                      child: PostCard(post: post),
+                    );
+                  }
                 },
-                error: (error, stackTrace) {
-                  return ErrorText(
-                    error: error.toString(),
-                  );
-                },
-                loading: () => const Loader(),
-              ),
-          error: (error, stackTrace) => ErrorText(
-            error: error.toString(),
-          ),
-          loading: () => const Loader(),
-        );
+              );
+            },
+            error: (error, stackTrace) {
+              return ErrorText(
+                error: error.toString(),
+              );
+            },
+            loading: () => Loader(
+                  color: Colors.red,
+                )),
+        error: (error, stackTrace) => ErrorText(
+              error: error.toString(),
+            ),
+        loading: () => Loader(
+              color: Colors.red,
+            ));
   }
 }

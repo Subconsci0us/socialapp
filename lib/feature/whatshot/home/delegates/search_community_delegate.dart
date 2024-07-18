@@ -7,6 +7,7 @@ import 'package:socialapp/feature/whatshot/community/screens/community_screens.d
 
 class SearchCommunityDelegate extends SearchDelegate {
   final WidgetRef ref;
+
   SearchCommunityDelegate(this.ref);
 
   @override
@@ -15,6 +16,8 @@ class SearchCommunityDelegate extends SearchDelegate {
       IconButton(
         onPressed: () {
           query = '';
+          // Refresh suggestions when query is cleared
+          showSuggestions(context);
         },
         icon: const Icon(Icons.close),
       ),
@@ -23,36 +26,53 @@ class SearchCommunityDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return null;
+    return IconButton(
+      onPressed: () => Navigator.of(context).pop(),
+      icon: const Icon(Icons.arrow_back),
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    // Implement a view for showing results based on the query if needed
     return const SizedBox();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return ref.watch(searchCommunityProvider(query)).when(
-          data: (communites) => ListView.builder(
-            itemCount: communites.length,
-            itemBuilder: (BuildContext context, int index) {
-              final community = communites[index];
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(community.avatar),
-                ),
-                title: Text('r/${community.name}'),
-                onTap: () => Navigator.of(context).push(
-                  CommunityScreen.route(community.name),
-                ),
+    return Consumer(
+      builder: (context, ref, _) {
+        final queryProvider = searchCommunityProvider(query);
+        final queryResult = ref.watch(queryProvider);
+
+        return queryResult.when(
+            data: (communities) {
+              if (communities.isEmpty) {
+                return const Center(child: Text('No communities found.'));
+              }
+              return ListView.builder(
+                itemCount: communities.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final community = communities[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(community.avatar),
+                    ),
+                    title: Text('r/${community.name}'),
+                    onTap: () => Navigator.of(context).push(
+                      CommunityScreen.route(community.name),
+                    ),
+                  );
+                },
               );
             },
-          ),
-          error: (error, stackTrace) => ErrorText(
-            error: error.toString(),
-          ),
-          loading: () => const Loader(),
-        );
+            error: (error, stackTrace) => ErrorText(
+                  error: error.toString(),
+                ),
+            loading: () => Loader(
+                  color: Colors.red,
+                ));
+      },
+    );
   }
 }

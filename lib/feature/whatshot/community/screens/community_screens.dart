@@ -30,114 +30,123 @@ class CommunityScreen extends ConsumerWidget {
 
     return Scaffold(
       body: ref.watch(getCommunityByNameProvider(name)).when(
-            data: (community) => NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) {
-                return [
-                  SliverAppBar(
-                    expandedHeight: 150,
-                    floating: true,
-                    snap: true,
-                    flexibleSpace: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.network(
-                            community.banner,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate(
-                        [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(community.avatar),
-                              radius: 35,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'r/${community.name}',
-                                style: const TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              if (!isGuest)
-                                community.mods.contains(user.uid)
-                                    ? OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                              ModToolsScreen.route(
-                                                  community.name));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25),
-                                        ),
-                                        child: const Text('Mod Tools'),
-                                      )
-                                    : OutlinedButton(
-                                        onPressed: () => joinCommunity(
-                                            ref, community, context),
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25),
-                                        ),
-                                        child: Text(
-                                            community.members.contains(user.uid)
-                                                ? 'Joined'
-                                                : 'Join'),
-                                      ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              '${community.members.length} members',
+          data: (community) => NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverAppBar(
+                      expandedHeight: 150,
+                      floating: true,
+                      snap: true,
+                      flexibleSpace: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Image.network(
+                              community.banner,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ];
-              },
-              body: ref.watch(getCommunityPostsProvider(name)).when(
+                    SliverPadding(
+                      padding: const EdgeInsets.all(16),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: CircleAvatar(
+                                backgroundImage: NetworkImage(community.avatar),
+                                radius: 35,
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'r/${community.name}',
+                                  style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                if (!isGuest)
+                                  community.mods.contains(user.uid)
+                                      ? OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                ModToolsScreen.route(
+                                                    community.name));
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 25),
+                                          ),
+                                          child: const Text('Mod Tools'),
+                                        )
+                                      : OutlinedButton(
+                                          onPressed: () => joinCommunity(
+                                              ref, community, context),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 25),
+                                          ),
+                                          child: Text(community.members
+                                                  .contains(user.uid)
+                                              ? 'Joined'
+                                              : 'Join'),
+                                        ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: Text(
+                                '${community.members.length} members',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ];
+                },
+                body: ref.watch(getCommunityPostsProvider(name)).when(
                     data: (data) {
-                      return ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final post = data[index];
-                          return PostCard(post: post);
-                        },
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 5),
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final post = data[index];
+                            return Container(
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 10.0),
+                              child: PostCard(post: post),
+                            );
+                          },
+                        ),
                       );
                     },
                     error: (error, stackTrace) {
                       return ErrorText(error: error.toString());
                     },
-                    loading: () => const Loader(),
-                  ),
-            ),
-            error: (error, stackTrace) => ErrorText(error: error.toString()),
-            loading: () => const Loader(),
-          ),
+                    loading: () => Loader(
+                          color: Colors.red,
+                        )),
+              ),
+          error: (error, stackTrace) => ErrorText(error: error.toString()),
+          loading: () => Loader(
+                color: Colors.red,
+              )),
     );
   }
 }

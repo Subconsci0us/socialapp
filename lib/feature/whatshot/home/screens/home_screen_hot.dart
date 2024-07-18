@@ -22,7 +22,9 @@ class WhatshotHomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text(
+          'What\'s Hot',
+        ),
         centerTitle: false,
         leading: Builder(builder: (context) {
           return IconButton(

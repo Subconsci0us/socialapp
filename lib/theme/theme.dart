@@ -10,13 +10,13 @@ final themeNotifierProvider =
 class Palette {
   // Colors
   static const Color blackColor = Color.fromRGBO(1, 1, 1, 1); // Primary color
-  static Color greyColor = Colors.grey.shade200; // Secondary color
+  static Color greyColor = Colors.grey.shade100; // Secondary color
   static const Color drawerColor = Color.fromRGBO(18, 18, 18, 1);
   static const Color whiteColor = Colors.white;
   static final Color redColor = Colors.red.shade500;
   static final Color blueColor = Colors.blue.shade300;
 
-  // Themes
+  // Dark mode theme
   static final ThemeData darkModeAppTheme = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: blackColor,
     cardColor: greyColor,
@@ -42,6 +42,7 @@ class Palette {
     indicatorColor: blackColor,
   );
 
+  // Light mode theme
   static final ThemeData lightModeAppTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: greyColor,
     cardColor: whiteColor,

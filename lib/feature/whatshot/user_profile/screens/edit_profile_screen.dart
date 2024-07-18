@@ -95,7 +95,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               ],
             ),
             body: isLoading
-                ? const Loader()
+                ? Loader(
+                    color: Colors.red,
+                  )
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -179,7 +181,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     ),
                   ),
           ),
-          loading: () => const Loader(),
+          loading: () => Loader(
+            color: Colors.red,
+          ),
           error: (error, stackTrace) => ErrorText(
             error: error.toString(),
           ),

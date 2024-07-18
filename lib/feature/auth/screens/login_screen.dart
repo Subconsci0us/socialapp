@@ -68,7 +68,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   isLoading
-                      ? const Loader()
+                      ? Loader(
+                          color: Colors.red,
+                        )
                       : AuthGradientButton(
                           buttonText: 'Sign in',
                           onPressed: () {

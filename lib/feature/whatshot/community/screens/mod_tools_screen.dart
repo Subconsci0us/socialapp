@@ -7,10 +7,11 @@ class ModToolsScreen extends StatelessWidget {
         builder: (context) => ModToolsScreen(name: name),
       );
   final String name;
+
   const ModToolsScreen({
-    Key? key,
+    super.key,
     required this.name,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

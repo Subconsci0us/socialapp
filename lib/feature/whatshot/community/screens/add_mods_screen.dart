@@ -56,12 +56,12 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
         ],
       ),
       body: ref.watch(getCommunityByNameProvider(widget.name)).when(
-            data: (community) => ListView.builder(
-              itemCount: community.members.length,
-              itemBuilder: (BuildContext context, int index) {
-                final member = community.members[index];
+          data: (community) => ListView.builder(
+                itemCount: community.members.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final member = community.members[index];
 
-                return ref.watch(getUserDataProvider(member)).when(
+                  return ref.watch(getUserDataProvider(member)).when(
                       data: (user) {
                         ////// Can add the functionality to remove creator of the community to be admin or not from ctr
                         if (community.mods.contains(member) && ctr == 0) {
@@ -81,17 +81,19 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
                         );
                       },
                       error: (error, stackTrace) => ErrorText(
-                        error: error.toString(),
-                      ),
-                      loading: () => const Loader(),
-                    );
-              },
-            ),
-            error: (error, stackTrace) => ErrorText(
-              error: error.toString(),
-            ),
-            loading: () => const Loader(),
-          ),
+                            error: error.toString(),
+                          ),
+                      loading: () => Loader(
+                            color: Colors.red,
+                          ));
+                },
+              ),
+          error: (error, stackTrace) => ErrorText(
+                error: error.toString(),
+              ),
+          loading: () => Loader(
+                color: Colors.red,
+              )),
     );
   }
 }

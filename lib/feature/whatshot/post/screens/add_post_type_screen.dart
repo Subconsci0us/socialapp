@@ -10,7 +10,6 @@ import 'package:socialapp/feature/whatshot/community/controller/community_contro
 import 'package:socialapp/feature/whatshot/post/controller/post_controller.dart';
 import 'package:socialapp/models/community_model.dart';
 import 'package:socialapp/theme/pallete.dart';
-import 'package:socialapp/theme/theme.dart';
 
 class AddPostTypeScreen extends ConsumerStatefulWidget {
   static Route<dynamic> route(String type) => MaterialPageRoute(
@@ -90,7 +89,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
     final isTypeImage = widget.type == 'image';
     final isTypeText = widget.type == 'text';
     final isTypeLink = widget.type == 'link';
-    final currentTheme = ref.watch(themeNotifierProvider);
+    // final currentTheme = ref.watch(themeNotifierProvider);
     final isLoading = ref.watch(postControllerProvider);
 
     return Scaffold(
@@ -104,7 +103,9 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
         ],
       ),
       body: isLoading
-          ? const Loader()
+          ? Loader(
+              color: Colors.red,
+            )
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -175,35 +176,36 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                     ),
                   ),
                   ref.watch(userCommunitiesProvider).when(
-                        data: (data) {
-                          communities = data;
+                      data: (data) {
+                        communities = data;
 
-                          if (data.isEmpty) {
-                            return const SizedBox();
-                          }
+                        if (data.isEmpty) {
+                          return const SizedBox();
+                        }
 
-                          return DropdownButton(
-                            value: selectedCommunity ?? data[0],
-                            items: data
-                                .map(
-                                  (e) => DropdownMenuItem(
-                                    value: e,
-                                    child: Text(e.name),
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                selectedCommunity = val;
-                              });
-                            },
-                          );
-                        },
-                        error: (error, stackTrace) => ErrorText(
-                          error: error.toString(),
-                        ),
-                        loading: () => const Loader(),
-                      ),
+                        return DropdownButton(
+                          value: selectedCommunity ?? data[0],
+                          items: data
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              selectedCommunity = val;
+                            });
+                          },
+                        );
+                      },
+                      error: (error, stackTrace) => ErrorText(
+                            error: error.toString(),
+                          ),
+                      loading: () => Loader(
+                            color: Colors.red,
+                          )),
                 ],
               ),
             ),

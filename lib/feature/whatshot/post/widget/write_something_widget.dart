@@ -8,7 +8,10 @@ class WriteSomethingWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final theme = ref.watch(themeNotifierProvider);
     final user = ref.watch(userProvider)!;
+    final isLightTheme = Theme.of(context).brightness == Brightness.light;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: Column(
@@ -30,14 +33,17 @@ class WriteSomethingWidget extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 15.0),
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(width: 1.0, color: Colors.grey[300]!),
+                        border: Border.all(
+                          width: 1.0,
+                          color:
+                              isLightTheme ? Colors.black54 : Colors.grey[300]!,
+                        ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Write something here...',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: isLightTheme ? Colors.black : Colors.grey[400],
                           fontSize: 16.0,
                         ),
                       ),
@@ -47,9 +53,11 @@ class WriteSomethingWidget extends ConsumerWidget {
               ],
             ),
           ),
-          const Divider(),
+          Divider(
+            color: isLightTheme ? Colors.black54 : Colors.grey[300],
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -67,7 +75,8 @@ class WriteSomethingWidget extends ConsumerWidget {
                       Text(
                         'Link',
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color:
+                              isLightTheme ? Colors.black54 : Colors.grey[300],
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
                         ),
@@ -75,9 +84,10 @@ class WriteSomethingWidget extends ConsumerWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 24,
-                  child: VerticalDivider(color: Colors.grey[600]),
+                  child: VerticalDivider(
+                      color: isLightTheme ? Colors.black54 : Colors.grey[300]),
                 ),
                 GestureDetector(
                   onTap: () => Navigator.of(context)
@@ -93,7 +103,8 @@ class WriteSomethingWidget extends ConsumerWidget {
                       Text(
                         'Photo',
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color:
+                              isLightTheme ? Colors.black54 : Colors.grey[300],
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
                         ),
@@ -104,7 +115,9 @@ class WriteSomethingWidget extends ConsumerWidget {
               ],
             ),
           ),
-          const Divider(),
+          Divider(
+            color: isLightTheme ? Colors.black54 : Colors.grey[300],
+          ),
         ],
       ),
     );

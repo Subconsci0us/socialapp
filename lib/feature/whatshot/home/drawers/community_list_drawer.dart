@@ -23,29 +23,30 @@ class CommunityListDrawer extends ConsumerWidget {
               },
             ),
             ref.watch(userCommunitiesProvider).when(
-                  data: (communities) => Expanded(
-                    child: ListView.builder(
-                      itemCount: communities.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final community = communities[index];
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(community.avatar),
-                          ),
-                          title: Text('r/${community.name}'),
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(CommunityScreen.route(community.name));
-                          },
-                        );
-                      },
+                data: (communities) => Expanded(
+                      child: ListView.builder(
+                        itemCount: communities.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final community = communities[index];
+                          return ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(community.avatar),
+                            ),
+                            title: Text('r/${community.name}'),
+                            onTap: () {
+                              Navigator.of(context)
+                                  .push(CommunityScreen.route(community.name));
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  error: (error, stackTrace) => ErrorText(
-                    error: error.toString(),
-                  ),
-                  loading: () => const Loader(),
-                ),
+                error: (error, stackTrace) => ErrorText(
+                      error: error.toString(),
+                    ),
+                loading: () => Loader(
+                      color: Colors.red,
+                    )),
           ],
         ),
       ),

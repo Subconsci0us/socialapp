@@ -214,23 +214,24 @@ class PostCard extends ConsumerWidget {
                                   .watch(getCommunityByNameProvider(
                                       post.communityName))
                                   .when(
-                                    data: (data) {
-                                      if (data.mods.contains(user.uid)) {
-                                        return IconButton(
-                                          onPressed: () =>
-                                              deletePost(ref, context),
-                                          icon: const Icon(
-                                            Icons.admin_panel_settings,
+                                      data: (data) {
+                                        if (data.mods.contains(user.uid)) {
+                                          return IconButton(
+                                            onPressed: () =>
+                                                deletePost(ref, context),
+                                            icon: const Icon(
+                                              Icons.admin_panel_settings,
+                                            ),
+                                          );
+                                        }
+                                        return const SizedBox();
+                                      },
+                                      error: (error, stackTrace) => ErrorText(
+                                            error: error.toString(),
                                           ),
-                                        );
-                                      }
-                                      return const SizedBox();
-                                    },
-                                    error: (error, stackTrace) => ErrorText(
-                                      error: error.toString(),
-                                    ),
-                                    loading: () => const Loader(),
-                                  ),
+                                      loading: () => Loader(
+                                            color: Colors.red,
+                                          )),
                             ],
                           ),
                         ],

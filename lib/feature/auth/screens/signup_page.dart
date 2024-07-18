@@ -86,7 +86,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   ),
                   const SizedBox(height: 20),
                   isloading
-                      ? const Loader()
+                      ? Loader(
+                          color: Colors.red,
+                        )
                       : AuthGradientButton(
                           buttonText: 'Sign Up',
                           onPressed: () {

@@ -38,7 +38,9 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
         title: const Text('Create a community'),
       ),
       body: isLoading
-          ? const Loader()
+          ? Loader(
+              color: Colors.red,
+            )
           : Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(

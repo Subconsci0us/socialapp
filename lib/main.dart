@@ -45,18 +45,19 @@ class _MyAppState extends ConsumerState<MyApp> {
       title: 'Social App',
       theme: ref.watch(themeNotifierProvider),
       home: ref.watch(authStateChangeProvider).when(
-            data: (user) {
-              if (user != null) {
-                if (userModel == null) {
-                  getData(ref, user);
-                }
-                return const Navigation();
+          data: (user) {
+            if (user != null) {
+              if (userModel == null) {
+                getData(ref, user);
               }
-              return const LoginPage();
-            },
-            error: (error, stackTrace) => ErrorText(error: error.toString()),
-            loading: () => const Loader(),
-          ),
+              return const Navigation();
+            }
+            return const LoginPage();
+          },
+          error: (error, stackTrace) => ErrorText(error: error.toString()),
+          loading: () => Loader(
+                color: Colors.red,
+              )),
     );
   }
 }

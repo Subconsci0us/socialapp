@@ -23,100 +23,107 @@ class UserProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: ref.watch(getUserDataProvider(uid)).when(
-            data: (user) => NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) {
-                return [
-                  SliverAppBar(
-                    expandedHeight: 250,
-                    floating: true,
-                    snap: true,
-                    flexibleSpace: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.network(
-                            user.banner,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.bottomLeft,
-                          padding:
-                              const EdgeInsets.all(20).copyWith(bottom: 70),
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(user.profilePic),
-                            radius: 45,
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.all(20),
-                          child: OutlinedButton(
-                            onPressed: () => Navigator.of(context).push(
-                              EditProfileScreen.route(user.uid),
+          data: (user) => NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverAppBar(
+                      expandedHeight: 250,
+                      floating: true,
+                      snap: true,
+                      flexibleSpace: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Image.network(
+                              user.banner,
+                              fit: BoxFit.cover,
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomLeft,
+                            padding:
+                                const EdgeInsets.all(20).copyWith(bottom: 70),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(user.profilePic),
+                              radius: 45,
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomLeft,
+                            padding: const EdgeInsets.all(20),
+                            child: OutlinedButton(
+                              onPressed: () => Navigator.of(context).push(
+                                EditProfileScreen.route(user.uid),
                               ),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                            ),
-                            child: const Text('Edit Profile'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate(
-                        [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'u/${user.name}',
-                                style: const TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 25),
                               ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              '${user.karma} karma',
+                              child: const Text('Edit Profile'),
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Divider(thickness: 2),
                         ],
                       ),
                     ),
-                  ),
-                ];
-              },
-              body: ref.watch(getUserPostsProvider(uid)).when(
+                    SliverPadding(
+                      padding:
+                          const EdgeInsets.only(left: 16, right: 16, top: 16),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'u/${user.name}',
+                                  style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                '${user.karma} karma',
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            const Divider(thickness: 2),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ];
+                },
+                body: ref.watch(getUserPostsProvider(uid)).when(
                     data: (data) {
                       return ListView.builder(
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           final post = data[index];
-                          return PostCard(post: post);
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 10.0),
+                            child: PostCard(post: post),
+                          );
                         },
                       );
                     },
                     error: (error, stackTrace) {
                       return ErrorText(error: error.toString());
                     },
-                    loading: () => const Loader(),
-                  ),
-            ),
-            error: (error, stackTrace) => ErrorText(error: error.toString()),
-            loading: () => const Loader(),
-          ),
+                    loading: () => Loader(
+                          color: Colors.red,
+                        )),
+              ),
+          error: (error, stackTrace) => ErrorText(error: error.toString()),
+          loading: () => Loader(
+                color: Colors.red,
+              )),
     );
   }
 }

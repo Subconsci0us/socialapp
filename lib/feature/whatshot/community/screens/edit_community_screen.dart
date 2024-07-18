@@ -59,6 +59,8 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
           context: context,
           community: community,
         );
+
+    // Navigator.pop(context);
   }
 
   @override
@@ -80,7 +82,9 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
               ],
             ),
             body: isLoading
-                ? const Loader()
+                ? Loader(
+                    color: Colors.red,
+                  )
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -152,7 +156,9 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                     ),
                   ),
           ),
-          loading: () => const Loader(),
+          loading: () => Loader(
+            color: Colors.red,
+          ),
           error: (error, stackTrace) => ErrorText(
             error: error.toString(),
           ),
