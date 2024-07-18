@@ -7,7 +7,6 @@ import 'package:socialapp/feature/whatshot/home/delegates/search_community_deleg
 import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
 import 'package:socialapp/feature/whatshot/post/screens/add_post_screen.dart';
-import 'package:socialapp/theme/pallete.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {

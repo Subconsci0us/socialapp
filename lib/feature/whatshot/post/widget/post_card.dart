@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
-import 'package:socialapp/core/constants/constants.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
 import 'package:socialapp/feature/whatshot/community/screens/community_screens.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:socialapp/theme/pallete.dart';
 
 final themeNotifierProvider =
     StateNotifierProvider<ThemeNotifier, ThemeData>((ref) {
@@ -37,7 +36,7 @@ class Palette {
       contentPadding: const EdgeInsets.all(27),
       border: _border(),
       enabledBorder: _border(),
-      focusedBorder: _border(blueColor),
+      focusedBorder: _border(redColor),
       errorBorder: _border(redColor),
     ),
     primaryColor: redColor,

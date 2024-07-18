@@ -95,7 +95,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                  color: AppPallete.gradient2,
+                                  color: Colors.redAccent,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),

@@ -117,7 +117,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                  color: AppPallete.gradient2,
+                                  color: Colors.redAccent,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
