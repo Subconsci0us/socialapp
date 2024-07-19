@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 void showSnackBar(BuildContext context, String text) {
   ScaffoldMessenger.of(context)
@@ -36,4 +37,8 @@ Future<File?> pickImage(bool profilepic, int x, int y) async {
   }
 
   return File(croppedFile.path);
+}
+
+String formatDateBydMMMYYYY(DateTime dateTime) {
+  return DateFormat("d MMM, yyyy").format(dateTime);
 }

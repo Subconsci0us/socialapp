@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:socialapp/feature/news/screen/news_page.dart';
 import 'package:socialapp/feature/whatshot/home/screens/home_screen_hot.dart';
 import 'package:socialapp/theme/theme.dart';
 
@@ -60,19 +61,6 @@ class _NavigationState extends ConsumerState<Navigation> {
           AcademicsPage(),
           SettingsPage(),
         ],
-      ),
-    );
-  }
-}
-
-class NewsPage extends StatelessWidget {
-  const NewsPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'News',
-        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }

@@ -1,4 +1,19 @@
 class Constants {
+  static const List<String> topics = [
+    'Technology',
+    'Business',
+    'Programming',
+    'Entertainment',
+    'Health',
+    'Science',
+    'Sports',
+    'Politics',
+    'Education',
+    'Environment',
+  ];
+
+  static const noConnectionErrorMessage = 'Not connected to a network!';
+
   static const bannerDefault =
       'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';
   static const avatarDefault =
