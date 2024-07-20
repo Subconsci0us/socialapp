@@ -40,6 +40,16 @@ class Palette {
     ),
     primaryColor: redColor,
     indicatorColor: blackColor,
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
+          color: whiteColor, fontSize: 32, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(
+          color: whiteColor, fontSize: 20, fontWeight: FontWeight.bold),
+      headlineSmall: TextStyle(
+          color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: whiteColor, fontSize: 14),
+      bodyMedium: TextStyle(color: whiteColor, fontSize: 12),
+    ),
   );
 
   // Light mode theme
@@ -67,6 +77,16 @@ class Palette {
     ),
     primaryColor: redColor,
     indicatorColor: whiteColor,
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
+          color: blackColor, fontSize: 32, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(
+          color: blackColor, fontSize: 20, fontWeight: FontWeight.bold),
+      headlineSmall: TextStyle(
+          color: blackColor, fontSize: 16, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: blackColor, fontSize: 14),
+      bodyMedium: TextStyle(color: blackColor, fontSize: 12),
+    ),
   );
 
   static OutlineInputBorder _border([Color color = Colors.grey]) {

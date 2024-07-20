@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/whatshot/post/screens/add_post_type_screen.dart';
+import 'package:socialapp/feature/whatshot/user_profile/screens/user_profile.dart';
 
 class WriteSomethingWidget extends ConsumerWidget {
   const WriteSomethingWidget({super.key});
@@ -20,9 +22,15 @@ class WriteSomethingWidget extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
               children: <Widget>[
-                CircleAvatar(
-                  radius: 28.0,
-                  backgroundImage: NetworkImage(user.profilePic),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    UserProfileScreen.route(user.uid),
+                  ),
+                  child: CircleAvatar(
+                    radius: 28.0,
+                    backgroundImage:
+                        CachedNetworkImageProvider(user.profilePic),
+                  ),
                 ),
                 const SizedBox(width: 7.0),
                 Expanded(

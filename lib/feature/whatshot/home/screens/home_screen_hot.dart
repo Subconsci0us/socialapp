@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:socialapp/feature/whatshot/feed/feed_screen.dart';
 import 'package:socialapp/feature/whatshot/home/delegates/search_community_delegate.dart';
 import 'package:socialapp/feature/whatshot/home/drawers/community_list_drawer.dart';
-import 'package:socialapp/feature/whatshot/home/drawers/profile_drawer.dart';
 
 class WhatshotHomeScreen extends ConsumerWidget {
   const WhatshotHomeScreen({
@@ -13,10 +12,6 @@ class WhatshotHomeScreen extends ConsumerWidget {
 
   void displayDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
-  }
-
-  void displayEndDrawer(BuildContext context) {
-    Scaffold.of(context).openEndDrawer();
   }
 
   @override
@@ -32,7 +27,7 @@ class WhatshotHomeScreen extends ConsumerWidget {
             ),
           ),
         ),
-        centerTitle: false,
+        centerTitle: true,
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.menu),
@@ -47,20 +42,9 @@ class WhatshotHomeScreen extends ConsumerWidget {
             },
             icon: const Icon(Icons.search),
           ),
-          Builder(builder: (context) {
-            return IconButton(
-              icon: const CircleAvatar(
-                backgroundImage: AssetImage('assets/images/default_avatar.jpg'),
-              ),
-              onPressed: () {
-                displayEndDrawer(context);
-              },
-            );
-          })
         ],
       ),
       drawer: const CommunityListDrawer(),
-      endDrawer: const ProfileDrawer(),
       body: const FeedScreen(),
     );
   }

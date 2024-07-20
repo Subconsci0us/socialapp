@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:socialapp/feature/academics/screens/academic_screen.dart';
 import 'package:socialapp/feature/news/screen/news_page.dart';
+import 'package:socialapp/feature/settings/screens/settings_screen.dart';
 import 'package:socialapp/feature/whatshot/home/screens/home_screen_hot.dart';
 import 'package:socialapp/theme/theme.dart';
 
@@ -61,33 +63,6 @@ class _NavigationState extends ConsumerState<Navigation> {
           AcademicsPage(),
           SettingsPage(),
         ],
-      ),
-    );
-  }
-}
-
-class AcademicsPage extends StatelessWidget {
-  const AcademicsPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Academics',
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
-    );
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Settings',
-        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
