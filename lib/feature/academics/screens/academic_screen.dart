@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:socialapp/feature/academics/screens/lms_preview.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/settings/screens/settings_screen.dart';
 import 'package:socialapp/theme/theme.dart';
@@ -147,25 +148,47 @@ class AcademicsPage extends ConsumerWidget {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 130,
-                decoration: BoxDecoration(
-                  color: Colors.red.shade300, // Maroon color for the container
-                  borderRadius: BorderRadius.circular(15), // Rounded corners
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Learning Management System',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontSize: 20, // Font size for "LMS"
-                        fontWeight: FontWeight.bold,
-                        color:
-                            Colors.white, // Text color to contrast with maroon
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(TabScreen.route());
+                },
+                child: Container(
+                  height: 130,
+                  decoration: BoxDecoration(
+                    color:
+                        Colors.red.shade300, // Maroon color for the container
+                    borderRadius: BorderRadius.circular(15), // Rounded corners
+                  ),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Learning Management System',
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              fontSize: 20, // Font size for "LMS"
+                              fontWeight: FontWeight.bold,
+                              color: Colors
+                                  .white, // Text color to contrast with maroon
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/images/logo.png', // Replace with your image path
+                            width: 40, // Width of the image
+                            height: 40, // Height of the image
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

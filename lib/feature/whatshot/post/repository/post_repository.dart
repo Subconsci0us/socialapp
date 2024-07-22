@@ -37,38 +37,6 @@ class PostRepository {
     }
   }
 
-  /*
-
-  Stream<List<Post>> fetchUserPosts(List<Community> communities) {
-    return _posts
-        .where('communityName',
-            whereIn: communities.map((e) => e.name).toList())
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .asyncMap((event) async {
-      // Convert Firestore documents to Post objects
-      final List<Post> posts = event.docs
-          .map((e) => Post.fromMap(e.data() as Map<String, dynamic>))
-          .toList();
-
-      // Check internet connectivity
-      if (await connectionChecker.isConnected) {
-        // If connected, upload posts to local storage (Hive)
-        localDataSource.uploadLocalPosts(posts: posts);
-        print(' storage updated with ${posts.length} posts.');
-
-        return posts;
-      }
-
-      // Load posts from local storage (Hive)
-      List<Post> localPosts = localDataSource.loadPosts();
-      print('Local posts loaded from Hive: ${localPosts.length} posts.');
-
-      // Return local posts if available, otherwise return fetched posts
-      return localPosts;
-    });
-  }
-*/
   Stream<List<Post>> fetchUserPosts(List<Community> communities) {
     // Stream to listen for posts
     return _posts
@@ -83,11 +51,6 @@ class PostRepository {
             (doc) => Post.fromMap(doc.data() as Map<String, dynamic>),
           )
           .toList();
-
-      //  localDataSource.uploadLocalPosts(posts: posts);
-      // print('Storage updated with ${posts.length} posts.');
-
-      //
       return posts;
     });
   }

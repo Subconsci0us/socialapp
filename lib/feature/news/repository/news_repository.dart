@@ -87,4 +87,27 @@ class NewsRepository {
       throw ServerException(e.toString());
     }
   }
+
+  Stream<List<NewsModel>> searchNews(String query) {
+    return _firestore
+        .collection('news')
+        .where(
+          'title',
+          isGreaterThanOrEqualTo: query,
+          isLessThan: query.isEmpty
+              ? null
+              : query.substring(0, query.length - 1) +
+                  String.fromCharCode(
+                    query.codeUnitAt(query.length - 1) + 1,
+                  ),
+        )
+        .snapshots()
+        .map((event) {
+      List<NewsModel> newsList = [];
+      for (var doc in event.docs) {
+        newsList.add(NewsModel.fromMap(doc.data()));
+      }
+      return newsList;
+    });
+  }
 }

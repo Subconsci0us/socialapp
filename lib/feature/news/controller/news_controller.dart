@@ -12,13 +12,13 @@ import 'package:uuid/uuid.dart';
 final newsControllerProvider =
     StateNotifierProvider<NewsController, bool>((ref) {
   final newsRepository = ref.watch(newsRepositoryProvider);
-  // final storageRepository = ref.watch(storageRepositoryProvider);
   return NewsController(
     newsRepository: newsRepository,
-    //  ref: ref,
-
-    //  connectionChecker: ref.watch(ConnectionChecker)
   );
+});
+
+final searchNewsProvider = StreamProvider.family((ref, String query) {
+  return ref.watch(newsControllerProvider.notifier).searchNews(query);
 });
 
 final newsProvider = FutureProvider<List<NewsModel>>((ref) async {
@@ -97,5 +97,9 @@ class NewsController extends StateNotifier<bool> {
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
+  }
+
+  Stream<List<NewsModel>> searchNews(String query) {
+    return _newsRepository.searchNews(query);
   }
 }

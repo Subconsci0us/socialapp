@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:socialapp/feature/auth/controller/auth_controller.dart';
+import 'package:socialapp/feature/settings/screens/app_settings_screen.dart';
+import 'package:socialapp/feature/whatshot/user_profile/screens/edit_profile_screen.dart';
 import 'package:socialapp/theme/theme.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -10,10 +12,6 @@ class SettingsPage extends ConsumerWidget {
 
   void logOut(WidgetRef ref) {
     ref.read(authControllerProvider.notifier).logout();
-  }
-
-  void toggleTheme(WidgetRef ref) {
-    ref.read(themeNotifierProvider.notifier).toggleTheme();
   }
 
   @override
@@ -32,12 +30,6 @@ class SettingsPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: theme.indicatorColor,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            toggleTheme(ref);
-          },
-          icon: const Icon(Icons.color_lens),
-        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -97,7 +89,9 @@ class SettingsPage extends ConsumerWidget {
                 description: 'Update your profile',
                 textStyle: theme.textTheme.headlineSmall,
                 endIcon: Icons.keyboard_arrow_right,
-                onpress: () {},
+                onpress: () {
+                  Navigator.of(context).push(EditProfileScreen.route(user.uid));
+                },
                 icon: Icons.edit,
               ),
               const SizedBox(height: 5),
@@ -115,7 +109,9 @@ class SettingsPage extends ConsumerWidget {
                 description: 'Adjust your App Settings',
                 textStyle: theme.textTheme.headlineSmall,
                 endIcon: Icons.keyboard_arrow_right,
-                onpress: () {},
+                onpress: () {
+                  Navigator.of(context).push(SettingsScreen.route());
+                },
                 icon: Icons.settings,
               ),
               const Divider(),

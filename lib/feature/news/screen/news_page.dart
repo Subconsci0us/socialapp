@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:socialapp/core/common/error_text.dart';
 import 'package:socialapp/core/common/loader.dart';
+import 'package:socialapp/feature/news/delegates/search_news_delegate.dart';
 import 'package:socialapp/feature/news/screen/add_new_news_page.dart';
 import 'package:socialapp/feature/news/widget/news_card.dart';
 import 'package:socialapp/feature/news/controller/news_controller.dart'; // Ensure this is correctly implemented
@@ -25,20 +26,25 @@ class NewsPage extends ConsumerWidget {
             ),
           ),
         ),
-        leading: Builder(builder: (context) {
-          return IconButton(
-            onPressed: () async {
-              await Navigator.of(context).push(AddNewNewsPage.route());
-            },
-            icon: const Icon(
-              Icons.add_circle_outline_outlined,
-            ),
-          );
-        }),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () async {
+                await Navigator.of(context).push(AddNewNewsPage.route());
+              },
+              icon: const Icon(Icons.add_circle_outline_outlined),
+            );
+          },
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () => {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchNewsDelegate(ref),
+              );
+            },
           ),
         ],
       ),
@@ -48,9 +54,7 @@ class NewsPage extends ConsumerWidget {
                 itemCount: news.length,
                 itemBuilder: (BuildContext context, int index) {
                   final newsItem = news[index];
-                  return Container(
-                    child: NewsCard(news: newsItem),
-                  );
+                  return NewsCard(news: newsItem);
                 },
               );
             },
