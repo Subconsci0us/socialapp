@@ -23,15 +23,11 @@ final postControllerProvider =
   );
 });
 
-/*
-
 final userPostsProvider =
     StreamProvider.family((ref, List<Community> communities) {
   final postController = ref.watch(postControllerProvider.notifier);
   return postController.fetchUserPosts(communities);
 });
-
-*/
 
 final getPostByIdProvider = StreamProvider.family((ref, String postId) {
   final postController = ref.watch(postControllerProvider.notifier);
@@ -173,14 +169,13 @@ class PostController extends StateNotifier<bool> {
       });
     });
   }
-/*
+
   Stream<List<Post>> fetchUserPosts(List<Community> communities) {
     if (communities.isNotEmpty) {
       return _postRepository.fetchUserPosts(communities);
     }
     return Stream.value([]);
   }
-  */
 
   void deletePost(Post post, BuildContext context) async {
     final res = await _postRepository.deletePost(post);

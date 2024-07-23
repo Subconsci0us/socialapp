@@ -35,7 +35,6 @@ class PostRepository {
       return left(Failure(e.toString()));
     }
   }
-  /*
 
   Stream<List<Post>> fetchUserPosts(List<Community> communities) {
     // Stream to listen for posts
@@ -54,7 +53,6 @@ class PostRepository {
       return posts;
     });
   }
-  */
 
   FutureVoid deletePost(Post post) async {
     try {
