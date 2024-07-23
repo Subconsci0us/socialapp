@@ -17,7 +17,6 @@ final postRepositoryProvider = Provider((ref) {
 
 class PostRepository {
   final FirebaseFirestore _firestore;
-
   PostRepository({
     required FirebaseFirestore firestore,
   }) : _firestore = firestore;
