@@ -57,7 +57,8 @@ class SearchCommunityDelegate extends SearchDelegate {
                   final community = communities[index];
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(community.avatar),
+                      backgroundImage:
+                          CachedNetworkImageProvider(community.avatar),
                       backgroundColor: Colors.transparent,
                     ),
                     title: Text('r/${community.name}'),
