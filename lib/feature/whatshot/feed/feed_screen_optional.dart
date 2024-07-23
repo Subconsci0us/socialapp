@@ -1,13 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:socialapp/core/common/error_text.dart';
-import 'package:socialapp/core/common/loader.dart';
-import 'package:socialapp/feature/whatshot/community/controller/community_controller.dart';
-import 'package:socialapp/feature/whatshot/post/widget/post_card.dart';
-import 'package:socialapp/feature/whatshot/post/widget/write_something_widget.dart';
-import 'package:socialapp/models/post_model.dart';
+
 /*
 class FeedScreen extends ConsumerStatefulWidget {
   const FeedScreen({super.key});

@@ -53,11 +53,11 @@ class SearchNewsDelegate extends SearchDelegate {
               return ListView.builder(
                 itemCount: news.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final News = news[index];
+                  final newss = news[index];
                   return ListTile(
-                    title: Text('r/${News.title}'),
+                    title: Text('r/${newss.title}'),
                     onTap: () => Navigator.of(context).push(
-                      NewsViewerPage.route(News),
+                      NewsViewerPage.route(newss),
                     ),
                   );
                 },

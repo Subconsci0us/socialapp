@@ -160,7 +160,7 @@ class AddNewNewsPageState extends ConsumerState<AddNewNewsPage> {
                                               : null,
                                       side: selectedTopics.contains(e)
                                           ? null
-                                          : BorderSide(
+                                          : const BorderSide(
                                               color: AppPallete.borderColor,
                                             ),
                                     ),

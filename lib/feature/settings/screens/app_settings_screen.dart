@@ -4,8 +4,10 @@ import 'package:socialapp/theme/theme.dart'; // Adjust the import as needed
 
 // Settings screen with theme toggle
 class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
+
   static route() => MaterialPageRoute(
-        builder: (context) => SettingsScreen(),
+        builder: (context) => const SettingsScreen(),
       );
   @override
   Widget build(BuildContext context, WidgetRef ref) {
