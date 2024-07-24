@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socialapp/feature/academics/screens/academic_screen.dart';
-import 'package:socialapp/feature/auth/controller/auth_controller.dart';
 import 'package:socialapp/feature/news/screen/news_page.dart';
 import 'package:socialapp/feature/settings/screens/settings_screen.dart';
 import 'package:socialapp/feature/whatshot/home/screens/home_screen_hot.dart';
@@ -23,15 +22,6 @@ class _NavigationState extends ConsumerState<Navigation> {
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifierProvider);
-    final user = ref.watch(userProvider);
-
-    if (user == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
 
     return Scaffold(
       bottomNavigationBar: NavigationBar(

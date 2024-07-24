@@ -18,7 +18,7 @@ void showSnackBar(BuildContext context, String text) {
 Future<File?> pickImage(bool profilepic, int x, int y) async {
   final pickedImage = await ImagePicker().pickImage(
     source: ImageSource.gallery,
-    imageQuality: 10,
+    imageQuality: 1,
   );
 
   if (pickedImage == null) {
@@ -28,7 +28,7 @@ Future<File?> pickImage(bool profilepic, int x, int y) async {
   final croppedFile = await ImageCropper().cropImage(
     sourcePath: pickedImage.path,
     aspectRatio: CropAspectRatio(ratioX: x.toDouble(), ratioY: y.toDouble()),
-    compressQuality: 70,
+    compressQuality: 10,
     compressFormat: ImageCompressFormat.jpg,
   );
 

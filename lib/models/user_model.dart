@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+enum UserType { admin, moderator, basic }
 
 class UserModel {
   final String name;
@@ -8,7 +8,9 @@ class UserModel {
   final String uid;
   final bool isAuthenticated; // if guest or not
   final int karma;
-  final List<String> awards;
+
+  final UserType userType; // Updated from Enum to UserType
+
   UserModel({
     required this.name,
     required this.email,
@@ -17,7 +19,7 @@ class UserModel {
     required this.uid,
     required this.isAuthenticated,
     required this.karma,
-    required this.awards,
+    required this.userType,
   });
 
   UserModel copyWith({
@@ -28,7 +30,7 @@ class UserModel {
     String? uid,
     bool? isAuthenticated,
     int? karma,
-    List<String>? awards,
+    UserType? userType, // Updated from Enum to UserType
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -38,7 +40,8 @@ class UserModel {
       uid: uid ?? this.uid,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       karma: karma ?? this.karma,
-      awards: awards ?? this.awards,
+
+      userType: userType ?? this.userType, // Added userType field
     );
   }
 
@@ -51,7 +54,8 @@ class UserModel {
       'uid': uid,
       'isAuthenticated': isAuthenticated,
       'karma': karma,
-      'awards': awards,
+
+      'userType': userType.name, // Convert enum to string
     };
   }
 
@@ -64,13 +68,16 @@ class UserModel {
       uid: map['uid'] ?? '',
       isAuthenticated: map['isAuthenticated'] ?? false,
       karma: map['karma']?.toInt() ?? 0,
-      awards: List<String>.from(map['awards']),
+      userType: UserType.values.firstWhere(
+        (e) => e.name == map['userType'],
+        orElse: () => UserType.basic, // Default value
+      ),
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(name: $name, email: $email, profilePic: $profilePic, banner: $banner, uid: $uid, isAuthenticated: $isAuthenticated, karma: $karma, awards: $awards)';
+    return 'UserModel(name: $name, email: $email, profilePic: $profilePic, banner: $banner, uid: $uid, isAuthenticated: $isAuthenticated, karma: $karma, userType: $userType)';
   }
 
   @override
@@ -85,7 +92,7 @@ class UserModel {
         other.uid == uid &&
         other.isAuthenticated == isAuthenticated &&
         other.karma == karma &&
-        listEquals(other.awards, awards);
+        other.userType == userType; // Check userType as well
   }
 
   @override
@@ -97,6 +104,6 @@ class UserModel {
         uid.hashCode ^
         isAuthenticated.hashCode ^
         karma.hashCode ^
-        awards.hashCode;
+        userType.hashCode; // Include userType in hash code
   }
 }

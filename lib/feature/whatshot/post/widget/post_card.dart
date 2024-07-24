@@ -1,4 +1,5 @@
 import 'package:any_link_preview/any_link_preview.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -74,7 +75,8 @@ class PostCard extends ConsumerWidget {
                                         CommunityScreen.route(
                                             post.communityName)),
                                     child: CircleAvatar(
-                                      backgroundImage: NetworkImage(
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(
                                         post.communityProfilePic,
                                       ),
                                       radius: 16,

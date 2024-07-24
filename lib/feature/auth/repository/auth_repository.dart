@@ -70,8 +70,8 @@ class AuthRepository {
         profilePic: Constants.avatarDefault,
         isAuthenticated: true,
         karma: 0,
-        awards: [],
         banner: Constants.avatarDefault,
+        userType: UserType.admin,
       );
 
       await creatingUserinDB(userModel);
