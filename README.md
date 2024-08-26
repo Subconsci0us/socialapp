@@ -9,6 +9,8 @@ Welcome to **Social App**! This is a multi-functional social application designe
 ## Table of Contents
 
 - [What's Hot](#whats-hot)
+- ![IMG-20240826-WA0099](https://github.com/user-attachments/assets/81ab7103-365f-4a5a-a5ec-c9612b0130b6)
+
   - [Communities](#communities)
   - [Posts](#posts)
   - [Comments](#comments)
@@ -94,11 +96,18 @@ The **Settings** page offers various options to customize your experience within
 
 ## Installation
 
-Instructions on how to set up and install the app for development and production environments.
+Instructions on how to set up and install the app for development and production environments. Clone this repository using following command.
+
+git clone https://github.com/Subconsci0us/socialapp
+
+Then navigate to the project & install the libraries using following command.
+
+flutter pub get
 
 ## Usage
 
 Guide on how to use the app, including all features and functionalities.
+Keeping users updated through news section and entertained through What's hot section
 
 ## Contributing
 
