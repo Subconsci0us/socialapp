@@ -9,8 +9,6 @@ Welcome to **Social App**! This is a multi-functional social application designe
 ## Table of Contents
 
 - [What's Hot](#whats-hot)
-<img src="https://github.com/user-attachments/assets/572c5682-3698-482d-8978-95e25cf58df6" alt="What's Hot Screenshot" width="600" height="400">
-
   - [Communities](#communities)
   - [Posts](#posts)
   - [Comments](#comments)
@@ -32,6 +30,7 @@ Welcome to **Social App**! This is a multi-functional social application designe
 ## What's Hot
 
 The **What's Hot** section is inspired by Reddit, allowing users to engage with various communities through posts, comments, and voting.
+<img src="https://github.com/user-attachments/assets/572c5682-3698-482d-8978-95e25cf58df6" alt="What's Hot Screenshot" width="300" height="800">
 
 ### Communities
 
