@@ -58,6 +58,9 @@ The **What's Hot** section is inspired by Reddit, allowing users to engage with 
 
 The **News** section provides a platform for users to stay updated with the latest news.
 
+<img src="https://github.com/user-attachments/assets/9ed05301-97f5-4726-ac2e-07e6d3dbbea0" alt="News Screenshot" width="350" height="700">
+
+
 ### Browsing News
 
 - View all news articles with their titles and dates of posting.
