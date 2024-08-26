@@ -78,6 +78,8 @@ The **Settings** page offers various options to customize your experience within
 - Update personal information to keep your profile current.
 
 ### App Settings
+<img src="https://github.com/user-attachments/assets/6a070077-b041-4a78-bd1e-4285389cc9e2" alt="App Settings Screenshot" width="350" height="700">
+
 
 - Customize app settings like notifications, themes, and more.
 
